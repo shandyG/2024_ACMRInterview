@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+select {
+    width: 100%;
+}
+.reason {
+    margin-top: 10px;
+}
+#nextStepButton, #showResultsButton {
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: inline-block;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+#nextStepButton:hover, #showResultsButton:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Control Survey</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Access Control Survey</h1>
+    
+    <form id="surveyForm">
+        <h2>Shared Space Usage</h2>
+        <label for="sharedSpaces">1. Which shared spaces do you usually use?</label><br>
+        <input type="text" id="sharedSpaces" name="sharedSpaces"><br><br>
+        
+        <label for="relationships">2. What kind of relationships do you have with the people you share these spaces with? (Separate by commas)</label><br>
+        <input type="text" id="relationships" name="relationships"><br><br>
+        
+        <label for="everydayObjects">3. What everyday objects that you own do you bring into these shared spaces? (Separate by commas)</label><br>
+        <textarea id="everydayObjects" name="everydayObjects"></textarea><br><br>
+        
+        <button type="button" id="nextStepButton" onclick="generateTables()">Go Next Step</button><br><br>
+
+        <div id="tablesContainer"></div>
+        
+        <div id="situationalFactors" style="display:none;">
+            <h2>Situational Factors</h2>
+            <label>10. Does the relationship with the person affect the usability of this item?</label><br>
+            <input type="radio" id="relationshipYes" name="relationship" value="Yes">
+            <label for="relationshipYes">Yes</label><br>
+            <input type="radio" id="relationshipNo" name="relationship" value="No">
+            <label for="relationshipNo">No</label><br>
+            <input type="radio" id="relationshipNA" name="relationship" value="Not Applicable">
+            <label for="relationshipNA">Not Applicable</label><br>
+            <textarea id="relationshipReason" class="reason" name="relationshipReason" placeholder="Please provide a reason"></textarea><br><br>
+            
+            <label>11. Does the attribute of the object (e.g., price, type) affect the usability of this item?</label><br>
+            <input type="radio" id="attributeYes" name="attribute" value="Yes">
+            <label for="attributeYes">Yes</label><br>
+            <input type="radio" id="attributeNo" name="attribute" value="No">
+            <label for="attributeNo">No</label><br>
+            <input type="radio" id="attributeNA" name="attribute" value="Not Applicable">
+            <label for="attributeNA">Not Applicable</label><br>
+            <textarea id="attributeReason" class="reason" name="attributeReason" placeholder="Please provide a reason"></textarea><br><br>
+            
+            <label>12. Does the time affect the usability of this item?</label><br>
+            <input type="radio" id="timeYes" name="time" value="Yes">
+            <label for="timeYes">Yes</label><br>
+            <input type="radio" id="timeNo" name="time" value="No">
+            <label for="timeNo">No</label><br>
+            <input type="radio" id="timeNA" name="time" value="Not Applicable">
+            <label for="timeNA">Not Applicable</label><br>
+            <textarea id="timeReason" class="reason" name="timeReason" placeholder="Please provide a reason"></textarea><br><br>
+            
+            <label>13. Does the location of the object affect the usability of this item?</label><br>
+            <input type="radio" id="locationYes" name="location" value="Yes">
+            <label for="locationYes">Yes</label><br>
+            <input type="radio" id="locationNo" name="location" value="No">
+            <label for="locationNo">No</label><br>
+            <input type="radio" id="locationNA" name="location" value="Not Applicable">
+            <label for="locationNA">Not Applicable</label><br>
+            <textarea id="locationReason" class="reason" name="locationReason" placeholder="Please provide a reason"></textarea><br><br>
+            
+            <label>14. Does your absence affect the usability of this item?</label><br>
+            <input type="radio" id="absenceYes" name="absence" value="Yes">
+            <label for="absenceYes">Yes</label><br>
+            <input type="radio" id="absenceNo" name="absence" value="No">
+            <label for="absenceNo">No</label><br>
+            <input type="radio" id="absenceNA" name="absence" value="Not Applicable">
+            <label for="absenceNA">Not Applicable</label><br>
+            <textarea id="absenceReason" class="reason" name="absenceReason" placeholder="Please provide a reason"></textarea><br><br>
+            
+            <label>15. Do any other specific conditions affect the usability of this item?</label><br>
+            <input type="radio" id="otherYes" name="other" value="Yes">
+            <label for="otherYes">Yes</label><br>
+            <input type="radio" id="otherNo" name="other" value="No">
+            <label for="otherNo">No</label><br>
+            <input type="radio" id="otherNA" name="other" value="Not Applicable">
+            <label for="otherNA">Not Applicable</label><br>
+            <textarea id="otherReason" class="reason" name="otherReason" placeholder="Please provide a reason"></textarea><br><br>
+            
+            <h2>Demographic Information</h2>
+            <label for="age">16. Age</label><br>
+            <select id="age" name="age">
+                <option value="18-24">18-24</option>
+                <option value="25-34">25-34</option>
+                <option value="35-44">35-44</option>
+                <option value="45-54">45-54</option>
+                <option value="55-64">55-64</option>
+                <option value="65+">65+</option>
+            </select><br><br>
+            
+            <label for="gender">17. Gender</label><br>
+            <select id="gender" name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select><br><br>
+            
+            <label for="occupation">18. Occupation</label><br>
+            <input type="text" id="occupation" name="occupation"><br><br>
+            
+            <label for="sharedItems">19. What kind of items have you shared before?</label><br>
+            <textarea id="sharedItems" name="sharedItems"></textarea><br><br>
+            
+            <button type="button" id="showResultsButton" onclick="showResults()">Show Results</button>
+        </div>
+    </form>
+
+    <h2>Survey Results</h2>
+    <pre id="resultsContainer"></pre>
+
+    <script src="script.js"></script>
+</body>
+</html>
