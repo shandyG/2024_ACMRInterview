@@ -4,112 +4,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Access Control Survey</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Access Control Survey</h1>
+    <div id="introduction">
+        <h1>Introduction</h1>
+        <p>This survey asks about the relationships you have with people you share your current shared space with, such as an office or laboratory, and the everyday objects you bring into this space. Then, you will be asked under what conditions you would allow people with different relationships to interact with these objects as prompted by a Mixed Reality app. The survey will take approximately 20 minutes to complete.</p>
+        <p>In recent years, various companies have released different types of glasses-like devices called Head Mount Displays (HMD). Devices such as Microsoft's Hololens2, Meta Quest 3, and Apple Vision Pro are still fresh in our memories. The promotional videos for these devices showcase usage examples and applications designed for daily life settings like living rooms and offices. The use of such HMDs is expected to increase in the future, and in the field of Human-Computer Interaction, examples utilizing everyday objects in daily life are being presented. One such example is Tangible User Interfaces (TUI). Various examples of Tangible User Interfaces have been proposed, where virtual displays show information on everyday objects like water bottles and cushions, or where the objects themselves are used as interfaces to operate devices.</p>
+        <p>Imagine you are wearing an HMD and viewing the real world:</p>
+        <ul>
+            <li>When you look at an umbrella, a pop-up displaying the current weather information appears.</li>
+            <li>You rotate a cup to change the TV channel because there is no remote control nearby.</li>
+            <li>While playing a Mixed Reality game, you use a math textbook as a shield in the game.</li>
+            <li>Cut the origami into a triangular shape and use it as a substitute for a computer mouse.</li>
+            <li>When you look at an empty juice can, you see information on when to dispose of it in your area and then throw it in the trash.</li>
+        </ul>
+        <p>TUI can add functions to everyday objects that do not originally have those capabilities, by closely integrating these objects with us. However, current systems rarely consider use in shared spaces where multiple people bring in multiple objects.</p>
+        <p>In shared spaces, various objects are often borrowed and lent. Imagine yourself borrowing and lending items in a shared space:</p>
+        <p><strong>Classroom:</strong></p>
+        <ul>
+            <li>Textbooks and notebooks</li>
+            <li>Stationery such as scissors and pens</li>
+        </ul>
+        <p><strong>Office / Laboratory:</strong></p>
+        <ul>
+            <li>Tools such as hammers and bolts</li>
+            <li>Precision devices such as USB drives and chargers</li>
+        </ul>
+        <p><strong>Share House or Apartment:</strong></p>
+        <ul>
+            <li>Kitchen utensils such as frying pans and mugs</li>
+            <li>Food items like seasonings, desserts, and milk</li>
+        </ul>
+        <p><strong>Park:</strong></p>
+        <ul>
+            <li>Sports equipment like balls, bats, and rackets</li>
+            <li>Camping items such as chairs and picnic mats</li>
+        </ul>
+        
+        <p>As a result, these systems add virtual objects to suitable physical objects without determining who owns which objects and to what extent others are allowed to use them.</p>
+        <p>In this survey, we will ask about the types of relationships you have with the people you share your current shared space, such as an office or laboratory, and the types of everyday objects you bring into the space. After that, we will ask about the conditions under which you would allow people with different relationships to interact with the objects you bring, and to what extent you would allow actions prompted by an MR app. The actions prompted by the MR app are as follows:</p>
+        <img src="sample.png" alt="Sample Image" id="introImage">
+        <ul>
+            <li>Use-Without-Contact: Using the object without physical contact</li>
+            <li>Contact-Without-Modification: Touching or using an object without altering it.</li>
+            <li>Modification: Intentionally altering an object.</li>
+            <li>Modification Unrestorable: Modifying an object in a way that cannot be restored.</li>
+            <li>Do Anything You Want: Full permission to do anything with the object. You can also throw it in the trash.</li>
+        </ul>
+        <p>Allowing people in the shared space to access your everyday objects means that interfaces showing information or allowing direct contact with the objects will be displayed. The survey will take approximately 20 minutes to complete.</p>
+        <button id="understoodButton">I Understand</button>
+    </div>
     
-    <form id="surveyForm">
-        <h2>Shared Space Usage</h2>
-        <label for="sharedSpaces">1. Which shared spaces do you usually use?</label><br>
-        <input type="text" id="sharedSpaces" name="sharedSpaces"><br><br>
+    <div id="survey" style="display:none;">
+        <h1>Access Control Survey</h1>
         
-        <label for="relationships">2. What kind of relationships do you have with the people you share these spaces with? (Separate by commas)</label><br>
-        <input type="text" id="relationships" name="relationships"><br><br>
-        
-        <label for="everydayObjects">3. What everyday objects that you own do you bring into these shared spaces? (Separate by commas)</label><br>
-        <textarea id="everydayObjects" name="everydayObjects"></textarea><br><br>
-        
-        <button type="button" id="nextStepButton" onclick="generateTables()">Go Next Step</button><br><br>
+        <form id="surveyForm">
+            <h2>Shared Space Usage</h2>
+            <label for="sharedSpaces">1. Which shared spaces do you usually use?</label><br>
+            <input type="text" id="sharedSpaces" name="sharedSpaces"><br><br>
+            
+            <label for="relationships">2. What kind of relationships do you have with the people you share these spaces with? (Separate by commas)</label><br>
+            <input type="text" id="relationships" name="relationships"><br><br>
+            
+            <label for="everydayObjects">3. What everyday objects that you own do you bring into these shared spaces? (Separate by commas)</label><br>
+            <textarea id="everydayObjects" name="everydayObjects"></textarea><br><br>
+            
+            <button type="button" id="nextStepButton" onclick="generateTables()">Go Next Step</button><br><br>
+            
+            <div id="tablesContainer"></div>
+            
+            <div id="situationalFactors" style="display:none;">
+                <h2>Situational Factors</h2>
+                <label>10. Does the relationship with the person affect the usability of this item?</label><br>
+                <input type="radio" id="relationshipYes" name="relationship" value="Yes">
+                <label for="relationshipYes">Yes</label><br>
+                <input type="radio" id="relationshipNo" name="relationship" value="No">
+                <label for="relationshipNo">No</label><br>
+                <input type="radio" id="relationshipNA" name="relationship" value="Not Applicable">
+                <label for="relationshipNA">Not Applicable</label><br>
+                <textarea id="relationshipReason" class="reason" name="relationshipReason" placeholder="Please provide a reason"></textarea><br><br>
+                
+                <label>11. Does the attribute of the object (e.g., price, type) affect the usability of this item?</label><br>
+                <input type="radio" id="attributeYes" name="attribute" value="Yes">
+                <label for="attributeYes">Yes</label><br>
+                <input type="radio" id="attributeNo" name="attribute" value="No">
+                <label for="attributeNo">No</label><br>
+                <input type="radio" id="attributeNA" name="attribute" value="Not Applicable">
+                <label for="attributeNA">Not Applicable</label><br>
+                <textarea id="attributeReason" class="reason" name="attributeReason" placeholder="Please provide a reason"></textarea><br><br>
+                
+                <label>12. Does the time affect the usability of this item?</label><br>
+                <input type="radio" id="timeYes" name="time" value="Yes">
+                <label for="timeYes">Yes</label><br>
+                <input type="radio" id="timeNo" name="time" value="No">
+                <label for="timeNo">No</label><br>
+                <input type="radio" id="timeNA" name="time" value="Not Applicable">
+                <label for="timeNA">Not Applicable</label><br>
+                <textarea id="timeReason" class="reason" name="timeReason" placeholder="Please provide a reason"></textarea><br><br>
+                
+                <label>13. Does the location of the object affect the usability of this item?</label><br>
+                <input type="radio" id="locationYes" name="location" value="Yes">
+                <label for="locationYes">Yes</label><br>
+                <input type="radio" id="locationNo" name="location" value="No">
+                <label for="locationNo">No</label><br>
+                <input type="radio" id="locationNA" name="location" value="Not Applicable">
+                <label for="locationNA">Not Applicable</label><br>
+                <textarea id="locationReason" class="reason" name="locationReason" placeholder="Please provide a reason"></textarea><br><br>
+                
+                <label>14. Does your absence affect the usability of this item?</label><br>
+                <input type="radio" id="absenceYes" name="absence" value="Yes">
+                <label for="absenceYes">Yes</label><br>
+                <input type="radio" id="absenceNo" name="absence" value="No">
+                <label for="absenceNo">No</label><br>
+                <input type="radio" id="absenceNA" name="absence" value="Not Applicable">
+                <label for="absenceNA">Not Applicable</label><br>
+                <textarea id="absenceReason" class="reason" name="absenceReason" placeholder="Please provide a reason"></textarea><br><br>
+                
+                <label>15. Do any other specific conditions affect the usability of this item?</label><br>
+                <input type="radio" id="otherYes" name="other" value="Yes">
+                <label for="otherYes">Yes</label><br>
+                <input type="radio" id="otherNo" name="other" value="No">
+                <label for="otherNo">No</label><br>
+                <input type="radio" id="otherNA" name="other" value="Not Applicable">
+                <label for="otherNA">Not Applicable</label><br>
+                <textarea id="otherReason" class="reason" name="otherReason" placeholder="Please provide a reason"></textarea><br><br>
+                
+                <h2>Demographic Information</h2>
+                <label for="age">16. Age</label><br>
+                <select id="age" name="age">
+                    <option value="18-24">18-24</option>
+                    <option value="25-34">25-34</option>
+                    <option value="35-44">35-44</option>
+                    <option value="45-54">45-54</option>
+                    <option value="55-64">55-64</option>
+                    <option value="65+">65+</option>
+                </select><br><br>
+                
+                <label for="gender">17. Gender</label><br>
+                <select id="gender" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select><br><br>
+                
+                <label for="occupation">18. Occupation</label><br>
+                <input type="text" id="occupation" name="occupation"><br><br>
+                
+                <label for="sharedItems">19. What kind of items have you shared before?</label><br>
+                <textarea id="sharedItems" name="sharedItems"></textarea><br><br>
+                
+                <button type="button" id="showResultsButton" onclick="showResults()">Show Results</button>
+            </div>
+        </form>
 
-        <div id="tablesContainer"></div>
-        
-        <div id="situationalFactors" style="display:none;">
-            <h2>Situational Factors</h2>
-            <label>10. Does the relationship with the person affect the usability of this item?</label><br>
-            <input type="radio" id="relationshipYes" name="relationship" value="Yes">
-            <label for="relationshipYes">Yes</label><br>
-            <input type="radio" id="relationshipNo" name="relationship" value="No">
-            <label for="relationshipNo">No</label><br>
-            <input type="radio" id="relationshipNA" name="relationship" value="Not Applicable">
-            <label for="relationshipNA">Not Applicable</label><br>
-            <textarea id="relationshipReason" class="reason" name="relationshipReason" placeholder="Please provide a reason"></textarea><br><br>
-            
-            <label>11. Does the attribute of the object (e.g., price, type) affect the usability of this item?</label><br>
-            <input type="radio" id="attributeYes" name="attribute" value="Yes">
-            <label for="attributeYes">Yes</label><br>
-            <input type="radio" id="attributeNo" name="attribute" value="No">
-            <label for="attributeNo">No</label><br>
-            <input type="radio" id="attributeNA" name="attribute" value="Not Applicable">
-            <label for="attributeNA">Not Applicable</label><br>
-            <textarea id="attributeReason" class="reason" name="attributeReason" placeholder="Please provide a reason"></textarea><br><br>
-            
-            <label>12. Does the time affect the usability of this item?</label><br>
-            <input type="radio" id="timeYes" name="time" value="Yes">
-            <label for="timeYes">Yes</label><br>
-            <input type="radio" id="timeNo" name="time" value="No">
-            <label for="timeNo">No</label><br>
-            <input type="radio" id="timeNA" name="time" value="Not Applicable">
-            <label for="timeNA">Not Applicable</label><br>
-            <textarea id="timeReason" class="reason" name="timeReason" placeholder="Please provide a reason"></textarea><br><br>
-            
-            <label>13. Does the location of the object affect the usability of this item?</label><br>
-            <input type="radio" id="locationYes" name="location" value="Yes">
-            <label for="locationYes">Yes</label><br>
-            <input type="radio" id="locationNo" name="location" value="No">
-            <label for="locationNo">No</label><br>
-            <input type="radio" id="locationNA" name="location" value="Not Applicable">
-            <label for="locationNA">Not Applicable</label><br>
-            <textarea id="locationReason" class="reason" name="locationReason" placeholder="Please provide a reason"></textarea><br><br>
-            
-            <label>14. Does your absence affect the usability of this item?</label><br>
-            <input type="radio" id="absenceYes" name="absence" value="Yes">
-            <label for="absenceYes">Yes</label><br>
-            <input type="radio" id="absenceNo" name="absence" value="No">
-            <label for="absenceNo">No</label><br>
-            <input type="radio" id="absenceNA" name="absence" value="Not Applicable">
-            <label for="absenceNA">Not Applicable</label><br>
-            <textarea id="absenceReason" class="reason" name="absenceReason" placeholder="Please provide a reason"></textarea><br><br>
-            
-            <label>15. Do any other specific conditions affect the usability of this item?</label><br>
-            <input type="radio" id="otherYes" name="other" value="Yes">
-            <label for="otherYes">Yes</label><br>
-            <input type="radio" id="otherNo" name="other" value="No">
-            <label for="otherNo">No</label><br>
-            <input type="radio" id="otherNA" name="other" value="Not Applicable">
-            <label for="otherNA">Not Applicable</label><br>
-            <textarea id="otherReason" class="reason" name="otherReason" placeholder="Please provide a reason"></textarea><br><br>
-            
-            <h2>Demographic Information</h2>
-            <label for="age">16. Age</label><br>
-            <select id="age" name="age">
-                <option value="18-24">18-24</option>
-                <option value="25-34">25-34</option>
-                <option value="35-44">35-44</option>
-                <option value="45-54">45-54</option>
-                <option value="55-64">55-64</option>
-                <option value="65+">65+</option>
-            </select><br><br>
-            
-            <label for="gender">17. Gender</label><br>
-            <select id="gender" name="gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-            </select><br><br>
-            
-            <label for="occupation">18. Occupation</label><br>
-            <input type="text" id="occupation" name="occupation"><br><br>
-            
-            <label for="sharedItems">19. What kind of items have you shared before?</label><br>
-            <textarea id="sharedItems" name="sharedItems"></textarea><br><br>
-            
-            <button type="button" id="showResultsButton" onclick="showResults()">Show Results</button>
-        </div>
-    </form>
-
-    <h2>Survey Results</h2>
-    <pre id="resultsContainer"></pre>
+        <h2>Survey Results</h2>
+        <pre id="resultsContainer"></pre>
+    </div>
 
     <script src="script.js"></script>
 </body>
