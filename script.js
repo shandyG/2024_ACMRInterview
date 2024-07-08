@@ -1,3 +1,8 @@
+document.getElementById('understoodButton').addEventListener('click', function() {
+    document.getElementById('introduction').style.display = 'none';
+    document.getElementById('survey').style.display = 'block';
+});
+
 function generateTables() {
     const relationships = document.getElementById('relationships').value.split(',').map(item => item.trim());
     const objects = document.getElementById('everydayObjects').value.split(',').map(item => item.trim());
@@ -57,6 +62,8 @@ function generateTables() {
 
         const reasonsDiv = document.createElement('div');
         reasonsDiv.innerHTML = `
+            <img src="sample.png" alt="Sample Image" id="introImage">
+            
             <label for="${obj}_alwaysReason">Reasons for "Always"</label><br>
             <textarea id="${obj}_alwaysReason" name="${obj}_alwaysReason"></textarea><br><br>
             
